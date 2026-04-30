@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renelion | Energy Consulting Experts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){ emailjs.init({ publicKey: 'Ol9oi7LR_tkXV4tWB' }); })();
+  const EMAILJS_SERVICE_ID  = 'service_o5yk5qq';
+  const EMAILJS_TEMPLATE_ID = 'template_wh9t6hj';
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ══ THEME VARIABLES ══ */
+[data-theme="dark"] {
+  --bg:      #050505;
+  --bg2:     #0D0D0D;
+  --bg3:     #141414;
+  --bg4:     #1C1C1C;
+  --red:     #E8192C;
+  --red2:    #FF2D42;
+  --purple:  #7C3AED;
+  --purple2: #9D5CF5;
+  --white:   #FFFFFF;
+  --offwh:   #E2E2E2;
+  --gray:    #888888;
+  --gray2:   #444444;
+  --border:  rgba(255,255,255,0.07);
+  --border-r:rgba(232,25,44,0.2);
+  --border-p:rgba(124,58,237,0.3);
+  --card-bg: #0D0D0D;
+  --nav-bg:  rgba(5,5,5,0.92);
+  --inv:     invert(0);
+  --shadow:  0 20px 60px rgba(0,0,0,0.6);
+}
+[data-theme="light"] {
+  --bg:      #F5F5F0;
+  --bg2:     #EBEBEB;
+  --bg3:     #E0E0E0;
+  --bg4:     #D8D8D8;
+  --red:     #C91020;
+  --red2:    #E8192C;
+  --purple:  #6D28D9;
+  --purple2: #7C3AED;
+  --white:   #111111;
+  --offwh:   #222222;
+  --gray:    #555555;
+  --gray2:   #999999;
+  --border:  rgba(0,0,0,0.1);
+  --border-r:rgba(200,16,32,0.2);
+  --border-p:rgba(109,40,217,0.3);
+  --card-bg: #ECECEC;
+  --nav-bg:  rgba(245,245,240,0.95);
+  --inv:     invert(1);
+  --shadow:  0 20px 60px rgba(0,0,0,0.12);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* ══ CURSOR ══ */
+.cursor {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--red); pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 9998;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(232,25,44,0.5); pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+/* ══ THEME TOGGLE ══ */
+.theme-toggle {
+  width: 52px; height: 28px; border-radius: 100px;
+  background: var(--bg3); border: 1px solid var(--border);
+  cursor: none; position: relative; transition: background 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle::after {
+  content: ''; position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--red); transition: transform 0.3s, background 0.3s;
+}
+[data-theme="light"] .theme-toggle::after { transform: translateX(24px); background: var(--purple); }
+.theme-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+.theme-wrap { display: flex; align-items: center; gap: 0.6rem; }
+
+/* ══ NAV ══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4vw; height: 72px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.4s;
+  gap: 1rem;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem; letter-spacing: 0.1em; color: var(--white); flex-shrink: 0;
+}
+.nav-logo span { color: var(--red); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 600; color: var(--gray);
+  text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: color 0.2s; cursor: none; position: relative; white-space: nowrap;
+}
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--red); transition: width 0.3s; }
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 1.2rem; }
+.nav-cta {
+  background: var(--purple); color: #fff;
+  padding: 0.52rem 1.3rem; border-radius: 4px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: none; border: none; transition: all 0.25s; font-family: 'Manrope', sans-serif; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--purple2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.4); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; border: none; background: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+@media (max-width: 860px) {
+  .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 2rem 4vw; gap: 1.5rem; border-bottom: 1px solid var(--border); z-index: 499; }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none; }
+}
+
+/* ══ PAGE SYSTEM ══ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ══ HERO ══ */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 100px 4vw 80px;
+  position: relative; overflow: hidden; gap: 3rem;
+}
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+.hero-noise {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-left { position: relative; z-index: 2; }
+.hero-right { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+  margin-bottom: 1.8rem;
+}
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--red); }
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.2rem, 6vw, 6rem); line-height: 0.93; letter-spacing: 0.02em; color: var(--white);
+}
+
+.hero h1 .red { color: var(--red); }
+.hero h1 .outline { -webkit-text-stroke: 1px rgba(128,128,128,0.4); color: transparent; }
+.hero-sub {
+  margin-top: 1.8rem; font-size: 0.98rem; font-weight: 300; line-height: 1.85; color: var(--gray); max-width: 490px;
+}
+.hero-actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2.8rem;
+}
+.btn-purple {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--purple); color: #fff; padding: 0.95rem 2rem; border-radius: 4px;
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  border: none; cursor: none; transition: all 0.3s;
+}
+.btn-purple:hover { background: var(--purple2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(124,58,237,0.45); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--offwh); padding: 0.95rem 1.8rem; border-radius: 4px;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--border); cursor: none; transition: all 0.3s;
+}
+.btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-3px); }
+.btn-red {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--red); color: #fff; padding: 0.95rem 2rem; border-radius: 4px;
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  border: none; cursor: none; transition: all 0.3s;
+}
+.btn-red:hover { background: var(--red2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(232,25,44,0.4); }
+
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 2.2rem; margin-top: 3.5rem; padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+.stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); }
+.stat-val span { color: var(--red); }
+.stat-lbl { font-size: 0.68rem; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+/* battery anim */
+.battery-scene { width: 320px; height: 400px; position: relative; }
+.batt-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 260px; height: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,25,44,0.16) 0%, transparent 70%);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.7} 50%{transform:translate(-50%,-50%) scale(1.15);opacity:1} }
+@media (max-width: 900px) { .battery-scene { width: 240px; height: 300px; } }
+
+/* ══ SECTION COMMON ══ */
+.section { padding: 110px 4vw; position: relative; }
+.section-eyebrow {
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+  margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.7rem;
+}
+.section-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--red); }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem); line-height: 1; letter-spacing: 0.02em; color: var(--white); margin-bottom: 1.4rem;
+}
+.section-sub { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: var(--gray); max-width: 560px; }
+
+/* ══ SERVICE BLOCKS (replacing ticker) ══ */
+.service-blocks {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+  margin-top: 5rem; background: var(--border);
+  border: 1px solid var(--border);
+}
+@media (max-width: 900px) { .service-blocks { grid-template-columns: 1fr; } }
+.sb {
+  background: var(--bg); padding: 2.8rem 2.2rem;
+  position: relative; overflow: hidden;
+  transition: background 0.4s, opacity 0.7s ease, transform 0.7s ease;
+  opacity: 0; transform: translateY(30px);
+}
+.sb.visible { opacity: 1; transform: none; }
+.sb::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--purple));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.sb:hover { background: var(--bg2); }
+.sb:hover::before { transform: scaleX(1); }
+.sb-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(128,128,128,0.06);
+  position: absolute; top: 1.2rem; right: 1.5rem; line-height: 1;
+}
+.sb-icon { font-size: 2rem; margin-bottom: 1.4rem; display: block; }
+.sb-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.03em; color: var(--white); margin-bottom: 1rem; transition: color 0.3s; }
+.sb:hover .sb-title { color: var(--red); }
+.sb-text { font-size: 0.87rem; line-height: 1.8; color: var(--gray); margin-bottom: 1.5rem; }
+.sb-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.sb-tag {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.28rem 0.7rem; border: 1px solid var(--border); color: var(--gray); border-radius: 2px;
+  transition: all 0.2s;
+}
+.sb:hover .sb-tag { border-color: var(--border-r); color: var(--red); }
+
+/* ══ DOMAIN SECTIONS ══ */
+.domain-section {
+  padding: 100px 4vw;
+  border-top: 1px solid var(--border);
+}
+.domain-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 4rem;
+}
+@media (max-width: 768px) { .domain-header { grid-template-columns: 1fr; gap: 2rem; } }
+.domain-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.35rem 1rem; border-radius: 2px; margin-bottom: 1rem;
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+}
+.badge-red { background: rgba(232,25,44,0.1); border: 1px solid var(--border-r); color: var(--red); }
+.badge-purple { background: rgba(124,58,237,0.1); border: 1px solid var(--border-p); color: var(--purple2); }
+.badge-gold { background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.25); color: #F5A623; }
+.domain-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 4vw, 3.8rem); letter-spacing: 0.02em; color: var(--white); line-height: 1; margin-bottom: 1rem; }
+.domain-desc { font-size: 0.95rem; line-height: 1.85; color: var(--gray); }
+.domain-right-text { font-size: 0.92rem; line-height: 1.85; color: var(--gray); padding-top: 3rem; }
+.domain-right-text strong { color: var(--white); }
+
+.domain-cards {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+}
+@media (max-width: 1100px) { .domain-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .domain-cards { grid-template-columns: 1fr; } }
+.dc {
+  background: var(--bg2); padding: 2rem 1.8rem;
+  transition: background 0.3s, opacity 0.6s ease, transform 0.6s ease;
+  position: relative;
+  opacity: 0; transform: translateY(20px);
+}
+.dc.visible { opacity: 1; transform: none; }
+.dc:hover { background: var(--bg3); }
+.dc-accent { width: 3px; height: 30px; border-radius: 2px; margin-bottom: 1.2rem; }
+.dc-title { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+.dc-text { font-size: 0.82rem; line-height: 1.7; color: var(--gray2); }
+.dc:hover .dc-title { color: var(--red); }
+
+/* Solar domain — gold accent */
+.domain-section.solar .dc:hover .dc-title { color: #F5A623; }
+/* Integrated domain — purple accent */
+.domain-section.integrated .dc:hover .dc-title { color: var(--purple2); }
+
+/* ══ WHY US ══ */
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+}
+@media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.why-items { display: flex; flex-direction: column; margin-top: 3rem; }
+.why-item {
+  display: flex; align-items: flex-start; gap: 1.5rem;
+  padding: 1.8rem 0; border-bottom: 1px solid var(--border);
+  transition: padding-left 0.3s;
+}
+.why-item:first-child { border-top: 1px solid var(--border); }
+.why-item:hover { padding-left: 0.5rem; }
+.why-n { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--red); min-width: 1.8rem; padding-top: 0.1rem; }
+.why-title { font-size: 0.97rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+.why-text { font-size: 0.85rem; line-height: 1.8; color: var(--gray); }
+.iit-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 2.5rem; position: relative; overflow: hidden; margin-top: 3rem;
+}
+.iit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--purple)); }
+.iit-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem; }
+.iit-stat { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.iit-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--white); }
+.iit-val span { color: var(--red); font-size: 1.4rem; }
+.iit-lbl { font-size: 0.75rem; color: var(--gray); line-height: 1.5; margin-top: 0.2rem; }
+.iit-logos { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.iit-chip {
+  font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em;
+  padding: 0.4rem 1rem; border: 1px solid var(--border); color: var(--gray);
+  transition: all 0.2s; border-radius: 2px;
+}
+.iit-chip:hover { border-color: var(--red); color: var(--white); }
+
+/* ══ SOLAR SVG VISUAL ══ */
+.why-visual { display: flex; justify-content: center; align-items: flex-start; padding-top: 2rem; }
+
+/* ══ CTA ══ */
+.cta-full {
+  padding: 120px 4vw; text-align: center; position: relative; overflow: hidden;
+  background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.cta-full::before {
+  content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+}
+.cta-full h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem); letter-spacing: 0.02em; color: var(--white); line-height: 1;
+  position: relative;
+}
+.cta-full h2 .red { color: var(--red); }
+.cta-full p { font-size: 0.97rem; color: var(--gray); max-width: 400px; margin: 1.5rem auto 2.8rem; line-height: 1.8; position: relative; }
+.cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; position: relative; }
+
+/* ══ FOOTER ══ */
+footer {
+  padding: 3rem 4vw; display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border);
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--white); }
+.footer-logo span { color: var(--red); }
+.footer-copy { font-size: 0.75rem; color: var(--gray2); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; cursor: none; }
+.footer-links a:hover { color: var(--red); }
+
+/* ══ ABOUT ══ */
+.about-hero { min-height: 70vh; display: flex; align-items: flex-end; padding: 140px 4vw 80px; position: relative; overflow: hidden; }
+.about-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 8vw, 8.5rem); letter-spacing: 0.02em; line-height: 0.9; color: var(--white); position: relative; z-index: 2; }
+.about-title .red { color: var(--red); }
+.about-title .outline { -webkit-text-stroke: 1px rgba(128,128,128,0.3); color: transparent; }
+.about-body-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 6rem; padding: 80px 4vw 120px; }
+@media (max-width: 900px) { .about-body-grid { grid-template-columns: 1fr; gap: 3rem; } }
+.about-para { font-size: 1.02rem; line-height: 1.95; color: var(--gray); margin-bottom: 1.8rem; }
+.about-para strong { color: var(--white); font-weight: 600; }
+.about-para .red { color: var(--red); font-weight: 600; }
+.sidebar-block { background: var(--bg2); border: 1px solid var(--border); padding: 2rem; margin-bottom: 1rem; }
+.sidebar-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
+.chip { display: inline-block; border: 1px solid var(--border); color: var(--gray); font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.75rem; margin: 0.25rem; border-radius: 2px; transition: all 0.2s; cursor: default; }
+.chip:hover { border-color: var(--border-r); color: var(--white); }
+
+/* ══ SERVICES PAGE ══ */
+.spage-hero { padding: 160px 4vw 80px; position: relative; overflow: hidden; }
+.spage-bg-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem, 18vw, 16rem); color: rgba(128,128,128,0.04); position: absolute; top: 40px; right: 4vw; letter-spacing: -0.02em; line-height: 1; pointer-events: none; }
+.svc-full-grid { display: flex; flex-direction: column; padding: 0 4vw 120px; }
+.svc-full-card {
+  display: grid; grid-template-columns: 260px 1fr;
+  gap: 4rem; padding: 4rem 0; border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: padding-left 0.3s, opacity 0.7s ease, transform 0.7s ease;
+  opacity: 0; transform: translateY(25px);
+}
+.svc-full-card.visible { opacity: 1; transform: none; }
+.svc-full-card:hover { padding-left: 0.8rem; }
+.svc-full-card:hover .sfc-title { color: var(--red); }
+@media (max-width: 768px) { .svc-full-card { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; } }
+.sfc-num { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: rgba(232,25,44,0.1); line-height: 1; }
+.sfc-icon { font-size: 2.2rem; display: block; margin: 0.5rem 0 1rem; }
+.sfc-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.03em; color: var(--white); margin-bottom: 0.75rem; transition: color 0.3s; }
+.sfc-desc { font-size: 0.87rem; line-height: 1.8; color: var(--gray2); }
+.sfc-right { padding-top: 1.2rem; }
+.sfc-list { list-style: none; }
+.sfc-list li {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.9rem; color: var(--gray); line-height: 1.6;
+}
+.sfc-list li:last-child { border-bottom: none; }
+.sfc-list-n { font-family: 'Bebas Neue', sans-serif; font-size: 0.82rem; color: var(--red); opacity: 0.6; min-width: 1.5rem; padding-top: 0.15rem; flex-shrink: 0; }
+
+/* ══ CONTACT ══ */
+.contact-hero { padding: 160px 4vw 80px; }
+.contact-body { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; padding: 60px 4vw 120px; }
+@media (max-width: 900px) { .contact-body { grid-template-columns: 1fr; } }
+.cm { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+.cm-icon { width: 44px; height: 44px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; color: var(--red); }
+.cm-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray2); }
+.cm-val { font-size: 0.93rem; color: var(--white); margin-top: 0.3rem; font-weight: 500; }
+.response-note { margin-top: 2rem; padding: 1.2rem; border: 1px solid var(--border-p); background: rgba(124,58,237,0.06); font-size: 0.84rem; color: var(--offwh); display: flex; align-items: center; gap: 0.7rem; }
+.response-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); animation: pulseDot 2s infinite; flex-shrink: 0; }
+@keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+.contact-form { background: var(--bg2); border: 1px solid var(--border); padding: 3rem; }
+.form-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.04em; color: var(--white); margin-bottom: 0.4rem; }
+.form-sub { font-size: 0.84rem; color: var(--gray); margin-bottom: 2.2rem; }
+.form-group { margin-bottom: 1.3rem; }
+.form-group label { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray2); margin-bottom: 0.5rem; }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; background: var(--bg3); border: 1px solid var(--border);
+  padding: 0.85rem 1rem; color: var(--white); font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem; outline: none; resize: none; transition: border-color 0.25s; border-radius: 0;
+}
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--gray2); }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--purple); }
+.form-group select option { background: var(--bg3); }
+.form-submit {
+  width: 100%; padding: 1.05rem; background: var(--purple); color: #fff;
+  font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: none;
+  transition: all 0.3s; margin-top: 0.5rem; border-radius: 0;
+}
+.form-submit:hover { background: var(--purple2); box-shadow: 0 8px 30px rgba(124,58,237,0.4); }
+.form-success { display: none; text-align: center; padding: 4rem 2rem; }
+.form-success.show { display: block; }
+.form-success h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--purple2); margin-bottom: 0.5rem; }
+.form-success p { color: var(--gray); font-size: 0.9rem; }
+
+/* ══ REVEAL ══ */
+.reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-l { opacity: 0; transform: translateX(-35px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal-l.visible { opacity: 1; transform: none; }
+.reveal-r { opacity: 0; transform: translateX(35px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal-r.visible { opacity: 1; transform: none; }
+.d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s}
+.d4{transition-delay:0.4s} .d5{transition-delay:0.5s}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(35px)} to{opacity:1;transform:none} }
+@keyframes fadeLeft { from{opacity:0;transform:translateX(35px)} to{opacity:1;transform:none} }
+
+/* ══ DIVIDER ══ */
+.hdivider { height: 1px; background: var(--border); margin: 0 4vw; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <div class="nav-logo">RENE<span>LION</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('services')">Services</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="theme-wrap">
+      <span class="theme-label" id="themeLabel">Dark</span>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+    </div>
+    <button class="nav-cta" onclick="showPage('contact')">Book Consultation</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-noise"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Energy Engineering Experts</div>
+      <h1>
+        POWERING<br>
+        <span class="red">SMARTER</span><br>
+        ENERGY <span class="outline">DECISIONS</span><br>
+        WITH <span class="red">RENELION</span>
+      </h1>
+      <p class="hero-sub">End-to-end consulting for BESS, Solar PV, and integrated energy storage systems — from sizing and financial modelling to tender documentation and beyond.</p>
+      <div class="hero-actions">
+        <button class="btn-purple" onclick="showPage('contact')"> Book a Free Consultation</button>
+        <button class="btn-outline" onclick="showPage('services')">Our Services →</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-val">IIT<span>+</span></div><div class="stat-lbl">Certified Experts</div></div>
+        <div><div class="stat-val">3<span>X</span></div><div class="stat-lbl">Domain Coverage</div></div>
+        <div><div class="stat-val">24<span>H</span></div><div class="stat-lbl">Response Time</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="battery-scene">
+        <div class="batt-glow"></div>
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <linearGradient id="bFill" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#E8192C"/>
+              <stop offset="60%" stop-color="#FF6B7A"/>
+              <stop offset="100%" stop-color="#FFB3BB"/>
+            </linearGradient>
+            <clipPath id="bClip"><rect x="25" y="55" width="250" height="305" rx="18"/></clipPath>
+            <filter id="rGlow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <!-- Terminal -->
+          <rect x="110" y="18" width="80" height="42" rx="8" fill="none" stroke="rgba(128,128,128,0.15)" stroke-width="1.5"/>
+          <rect x="120" y="26" width="60" height="26" rx="5" fill="rgba(128,128,128,0.06)"/>
+          <!-- Body -->
+          <rect x="25" y="55" width="250" height="305" rx="18" fill="var(--bg2)" stroke="rgba(128,128,128,0.12)" stroke-width="1.5"/>
+          <!-- Fill -->
+          <g clip-path="url(#bClip)">
+            <rect x="25" y="360" width="250" height="0" fill="url(#bFill)" opacity="0.9">
+              <animate attributeName="y" from="360" to="110" dur="3s" begin="0.5s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+              <animate attributeName="height" from="0" to="250" dur="3s" begin="0.5s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+            </rect>
+            <!-- shimmer wave -->
+            <rect x="25" y="100" width="250" height="18" fill="rgba(255,255,255,0.1)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0.7;0;0" dur="3s" begin="0.5s" fill="freeze"/>
+              <animate attributeName="y" from="360" to="100" dur="3s" begin="0.5s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+            </rect>
+          </g>
+          <!-- Grid lines -->
+          <line x1="25" y1="178" x2="275" y2="178" stroke="rgba(128,128,128,0.06)" stroke-width="1"/>
+          <line x1="25" y1="258" x2="275" y2="258" stroke="rgba(128,128,128,0.06)" stroke-width="1"/>
+          <text x="44" y="170" fill="rgba(128,128,128,0.2)" font-family="Bebas Neue,sans-serif" font-size="12" letter-spacing="2">100%</text>
+          <text x="44" y="250" fill="rgba(128,128,128,0.2)" font-family="Bebas Neue,sans-serif" font-size="12" letter-spacing="2">66%</text>
+          <text x="44" y="333" fill="rgba(128,128,128,0.2)" font-family="Bebas Neue,sans-serif" font-size="12" letter-spacing="2">33%</text>
+          <!-- Lightning bolt -->
+          <path d="M165 135 L140 212 L158 212 L140 285 L185 196 L163 196 Z" fill="#E8192C" filter="url(#rGlow)" opacity="0">
+            <animate attributeName="opacity" values="0;0;0;1;1" dur="3s" begin="0.5s" fill="freeze"/>
+          </path>
+          <!-- Outer glow ring -->
+          <rect x="25" y="55" width="250" height="305" rx="18" fill="none" stroke="#E8192C" stroke-width="1.5" opacity="0" filter="url(#rGlow)">
+            <animate attributeName="opacity" values="0;0;0.5;0.9;0.5;0.9" dur="2.2s" begin="3s" repeatCount="indefinite"/>
+          </rect>
+          <!-- RENELION label -->
+          <text x="150" y="376" text-anchor="middle" fill="rgba(128,128,128,0.35)" font-family="Bebas Neue,sans-serif" font-size="13" letter-spacing="4">CHARGING</text>
+          <circle cx="130" cy="372" r="2.2" fill="#E8192C" opacity="0"><animate attributeName="opacity" values="0;1;0" dur="1.1s" begin="3s" repeatCount="indefinite"/></circle>
+          <circle cx="147" cy="372" r="2.2" fill="#E8192C" opacity="0"><animate attributeName="opacity" values="0;1;0" dur="1.1s" begin="3.37s" repeatCount="indefinite"/></circle>
+          <circle cx="164" cy="372" r="2.2" fill="#E8192C" opacity="0"><animate attributeName="opacity" values="0;1;0" dur="1.1s" begin="3.74s" repeatCount="indefinite"/></circle>
+          <!-- Energy flow lines -->
+          <line x1="150" y1="0" x2="150" y2="18" stroke="#E8192C" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;0.9;0;0.9;0" dur="1.4s" repeatCount="indefinite"/></line>
+          <line x1="133" y1="4" x2="133" y2="18" stroke="#E8192C" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.6;0;0.6;0" dur="1.4s" begin="0.23s" repeatCount="indefinite"/></line>
+          <line x1="167" y1="4" x2="167" y2="18" stroke="#E8192C" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.6;0;0.6;0" dur="1.4s" begin="0.46s" repeatCount="indefinite"/></line>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="section">
+    <div class="section-eyebrow reveal">What We Do</div>
+    <h2 class="section-title reveal d1">THREE DOMAINS.<br>COMPLETE EXPERTISE.</h2>
+    <p class="section-sub reveal d2">Renelion brings together trained energy engineers to deliver end-to-end consulting across Battery Energy Storage, Solar PV, and Integrated BESS+Solar systems.</p>
+
+    <div class="service-blocks">
+      <div class="sb d1">
+        <div class="sb-num">01</div>
+        <span class="sb-icon">🔋</span>
+        <div class="sb-title">Battery Energy Storage (BESS)</div>
+        <p class="sb-text">From BESS sizing and BEDPA to detailed electrical calculations and financial modelling — complete project support for standalone battery storage deployments.</p>
+        <div class="sb-tags">
+          <span class="sb-tag">Sizing</span>
+          <span class="sb-tag">BEDPA</span>
+          <span class="sb-tag">Tender Docs</span>
+          <span class="sb-tag">Financial Model</span>
+          <span class="sb-tag">Degradation</span>
+        </div>
+      </div>
+      <div class="sb d2">
+        <div class="sb-num">02</div>
+        <span class="sb-icon">☀️</span>
+        <div class="sb-title">Solar PV Systems</div>
+        <p class="sb-text">End-to-end solar PV engineering — from energy yield analysis and inverter sizing to techno-economic feasibility, tender documentation, and commissioning support.</p>
+        <div class="sb-tags">
+          <span class="sb-tag">Energy Yield</span>
+          <span class="sb-tag">PVsyst</span>
+          <span class="sb-tag">Tender Docs</span>
+          <span class="sb-tag">Feasibility</span>
+          <span class="sb-tag">Grid Integration</span>
+        </div>
+      </div>
+      <div class="sb d3">
+        <div class="sb-num">03</div>
+        <span class="sb-icon">⚡</span>
+        <div class="sb-title">Integrated BESS + Solar PV</div>
+        <p class="sb-text">Holistic design of hybrid solar+storage systems — optimising dispatch strategies, co-locating BESS with PV, and delivering bankable financial models for investors.</p>
+        <div class="sb-tags">
+          <span class="sb-tag">Co-Location</span>
+          <span class="sb-tag">Dispatch Strategy</span>
+          <span class="sb-tag">Bankable Reports</span>
+          <span class="sb-tag">ROI Modelling</span>
+          <span class="sb-tag">Grid Compliance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hdivider"></div>
+
+  <!-- BESS Domain -->
+  <section class="domain-section bess section">
+    <div class="domain-header">
+      <div>
+        <div class="domain-badge badge-red reveal">Battery Energy Storage Systems</div>
+        <h2 class="domain-title reveal d1">BESS ENGINEERING &amp; CONSULTING</h2>
+        <p class="domain-desc reveal d2">From a single-site industrial BESS to a multi-MW grid-scale project, we handle every technical and commercial layer — ensuring your system is correctly sized, financially optimised, and tender-ready.</p>
+      </div>
+      <div class="domain-right-text reveal-r">
+        Our BESS team brings experience across <strong>lithium-ion (LFP, NMC)</strong>, flow batteries, and hybrid chemistries. We understand real-world constraints — thermal management, cycle degradation, grid codes — and we build those into every deliverable.
+      </div>
+    </div>
+    <div class="domain-cards">
+      <div class="dc d1"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">BESS Sizing &amp; Design</div><div class="dc-text">MW/MWh sizing from load profiles, power flow analysis, duration optimisation, technology selection and configuration design.</div></div>
+      <div class="dc d2"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">BEDPA</div><div class="dc-text">Battery Energy Detailed Project Analysis — comprehensive technical studies covering degradation, round-trip efficiency, and lifetime performance.</div></div>
+      <div class="dc d3"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">Tender Documentation</div><div class="dc-text">RFP/RFQ preparation, technical specifications, scope of work, data sheets, vendor shortlisting, and bid evaluation.</div></div>
+      <div class="dc d4"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">Detailed Calculations</div><div class="dc-text">Electrical load flow, short circuit studies, protection coordination, harmonic analysis, and cable sizing for BESS integration.</div></div>
+      <div class="dc d1"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">Financial Modelling</div><div class="dc-text">CAPEX/OPEX modelling, revenue stacking (arbitrage, ancillary, capacity), IRR/NPV/payback calculations, and bankable reports.</div></div>
+      <div class="dc d2"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">Performance Optimisation</div><div class="dc-text">Dispatch strategy development, SoC management, cycling optimisation, and real-time performance benchmarking for operating assets.</div></div>
+      <div class="dc d3"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">Regulatory &amp; Grid Compliance</div><div class="dc-text">Grid code compliance review, interconnection studies, CEIG/CEA regulation guidance, and utility coordination support.</div></div>
+      <div class="dc d4"><div class="dc-accent" style="background:#E8192C"></div><div class="dc-title">Project Planning &amp; Feasibility</div><div class="dc-text">Site assessment, technology comparison, risk analysis, implementation roadmap, and go/no-go feasibility studies.</div></div>
+    </div>
+  </section>
+
+  <!-- Solar Domain -->
+  <section class="domain-section solar section" style="background:var(--bg2)">
+    <div class="domain-header">
+      <div>
+        <div class="domain-badge badge-gold reveal">Solar PV Systems</div>
+        <h2 class="domain-title reveal d1">SOLAR PV ENGINEERING &amp; CONSULTING</h2>
+        <p class="domain-desc reveal d2">Comprehensive solar PV consulting for utility-scale, C&amp;I, and rooftop projects — combining PVsyst modelling, grid engineering, and rigorous financial analysis.</p>
+      </div>
+      <div class="domain-right-text reveal-r">
+        Our solar engineers have delivered projects across <strong>multiple states in India</strong> and are experienced in DISCOM interconnection, CEIG/CEA approvals, and RPO compliance. We go beyond reports — we deliver documents you can submit.</div>
+    </div>
+    <div class="domain-cards">
+      <div class="dc d1"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">Energy Yield Analysis</div><div class="dc-text">PVsyst-based P50/P90 generation modelling, shadow analysis, soiling loss estimation, and long-term performance forecasting.</div></div>
+      <div class="dc d2"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">System Sizing &amp; Design</div><div class="dc-text">DC/AC ratio optimisation, inverter and module selection, string configuration, layout design, and irradiation studies.</div></div>
+      <div class="dc d3"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">Tender Documentation</div><div class="dc-text">Technical specifications, BoQ preparation, bid documents, vendor evaluation matrices, and contract technical annexures.</div></div>
+      <div class="dc d4"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">Detailed Calculations</div><div class="dc-text">Cable sizing, earthing design, protection relay coordination, transformer sizing, and grid integration studies (load flow, fault level).</div></div>
+      <div class="dc d1"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">Financial Modelling</div><div class="dc-text">LCOE calculation, tariff benchmarking, PPA structuring support, debt/equity modelling, and IRR sensitivity analysis.</div></div>
+      <div class="dc d2"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">Grid Integration</div><div class="dc-text">SLDC/RLDC interface, scheduling &amp; forecasting obligations, reactive power management, and inter-state transmission planning.</div></div>
+      <div class="dc d3"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">Regulatory &amp; Approvals</div><div class="dc-text">CEIG/CEA inspection readiness, DISCOM net-metering documentation, RPO compliance reports, and statutory submissions.</div></div>
+      <div class="dc d4"><div class="dc-accent" style="background:#F5A623"></div><div class="dc-title">O&amp;M Advisory</div><div class="dc-text">Performance ratio benchmarking, O&amp;M contract review, IV curve analysis, thermography interpretation, and degradation tracking.</div></div>
+    </div>
+  </section>
+
+  <!-- Integrated Domain -->
+  <section class="domain-section integrated section">
+    <div class="domain-header">
+      <div>
+        <div class="domain-badge badge-purple reveal">Integrated BESS + Solar PV</div>
+        <h2 class="domain-title reveal d1">HYBRID SOLAR + STORAGE SYSTEMS</h2>
+        <p class="domain-desc reveal d2">The most complex — and most valuable — energy systems require both BESS and solar expertise working in tandem. Renelion delivers fully integrated hybrid project consulting.</p>
+      </div>
+      <div class="domain-right-text reveal-r">Hybrid projects demand a rare combination of <strong>storage chemistry knowledge, solar yield modelling, and grid dispatch expertise</strong>. Our cross-domain team handles it as a single, coherent engagement.</div>
+    </div>
+    <div class="domain-cards">
+      <div class="dc d1"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Co-Location Design</div><div class="dc-text">Shared infrastructure planning — transformers, switchgear, interconnection — for solar and BESS on the same site, minimising CAPEX.</div></div>
+      <div class="dc d2"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Dispatch Strategy</div><div class="dc-text">Revenue-maximising dispatch algorithms — time-of-use arbitrage, peak shaving, ancillary services, and solar firming strategies.</div></div>
+      <div class="dc d3"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Integrated Sizing</div><div class="dc-text">Optimisation of PV capacity and BESS duration together — iterative modelling to find the commercial sweet spot for your use case.</div></div>
+      <div class="dc d4"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Bankable Feasibility Reports</div><div class="dc-text">Lender-grade technical and financial reports including independent engineer (IE) quality assumptions for project finance.</div></div>
+      <div class="dc d1"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Tender &amp; Procurement</div><div class="dc-text">Fully integrated tender packages covering both PV and BESS scopes — single-point vendor or split-contract approaches.</div></div>
+      <div class="dc d2"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Financial Modelling</div><div class="dc-text">Hybrid revenue stack modelling — combining solar generation revenue, BESS ancillary income, capacity payments, and green certificates.</div></div>
+      <div class="dc d3"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Grid Code Compliance</div><div class="dc-text">Ensuring hybrid systems meet IEGC, SERC, and CEA requirements — forecasting obligations, reactive capability, and protection settings.</div></div>
+      <div class="dc d4"><div class="dc-accent" style="background:#7C3AED"></div><div class="dc-title">Performance Monitoring</div><div class="dc-text">Integrated SCADA/EMS advisory, KPI dashboards, actual-vs-model benchmarking, and intervention recommendations for live projects.</div></div>
+    </div>
+  </section>
+
+  <div class="hdivider"></div>
+
+  <!-- Why Us -->
+  <section class="section">
+    <div class="why-grid">
+      <div>
+        <div class="section-eyebrow reveal">Why Renelion</div>
+        <h2 class="section-title reveal d1">BUILT BY ENGINEERS.<br>FOR ENGINEERS.</h2>
+
+        <div class="iit-card reveal d2">
+          <div class="iit-label">Our Team</div>
+          <div class="iit-stat">
+            <div><div class="iit-val">IIT<span>+</span></div><div class="iit-lbl">Alumni &amp; Experts from India's top engineering institutions</div></div>
+            <div><div class="iit-val">10<span>+</span></div><div class="iit-lbl">Years of combined energy domain expertise</div></div>
+          </div>
+          <div class="iit-logos">
+            <span class="iit-chip">IIT Bombay</span>
+            <span class="iit-chip">IIT Delhi</span>
+            <span class="iit-chip">IIT Madras</span>
+            <span class="iit-chip">IIT Kharagpur</span>
+            <span class="iit-chip">IIT Roorkee</span>
+            <span class="iit-chip">Industry Experts</span>
+          </div>
+        </div>
+
+        <div class="why-items">
+          <div class="why-item reveal d1">
+            <div class="why-n">01</div>
+            <div><div class="why-title">Top IIT Expertise in Energy Domain</div><div class="why-text">Our consultants are IIT alumni with specialisation in power systems, energy storage, and renewable energy — bringing academic rigour to every commercial engagement.</div></div>
+          </div>
+          <div class="why-item reveal d2">
+            <div class="why-n">02</div>
+            <div><div class="why-title">Real-World, Field-Tested Approach</div><div class="why-text">Solutions grounded in real project constraints — not textbook theory. Our deliverables can be submitted to DISCOMs, lenders, and EPCs as-is.</div></div>
+          </div>
+          <div class="why-item reveal d3">
+            <div class="why-n">03</div>
+            <div><div class="why-title">Commercially &amp; Technically Optimised</div><div class="why-text">We balance engineering performance with financial viability. Every recommendation considers CAPEX impact, revenue potential, and regulatory risk.</div></div>
+          </div>
+          <div class="why-item reveal d4">
+            <div class="why-n">04</div>
+            <div><div class="why-title">Fast Turnaround. Clear Outputs.</div><div class="why-text">We deliver on timelines that match your project schedule — with documents and calculations you can use immediately, not reports you need to decode.</div></div>
+          </div>
+          <div class="why-item reveal d5">
+            <div class="why-n">05</div>
+            <div><div class="why-title">Full-Spectrum Domain Coverage</div><div class="why-text">BESS, Solar PV, and hybrid integrated systems — one team, three domains, zero gaps. No need to coordinate multiple consultants.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solar panel SVG -->
+      <div class="why-visual">
+        <svg viewBox="0 0 380 460" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:380px;display:block">
+          <defs>
+            <linearGradient id="sunG" x1="0.5" y1="0" x2="0.5" y2="1">
+              <stop offset="0%" stop-color="#FFE066"/>
+              <stop offset="100%" stop-color="#F5A623"/>
+            </linearGradient>
+            <filter id="sGlow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="pGlow"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <linearGradient id="panGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1a1a2e"/>
+              <stop offset="100%" stop-color="#0d0d1a"/>
+            </linearGradient>
+          </defs>
+          <!-- Sun -->
+          <circle cx="190" cy="70" r="34" fill="url(#sunG)" filter="url(#sGlow)">
+            <animate attributeName="r" values="34;37;34" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="190" cy="70" r="48" fill="none" stroke="rgba(245,166,35,0.15)" stroke-width="1.5">
+            <animate attributeName="r" values="48;62;48" dur="4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0;1" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="190" cy="70" r="65" fill="none" stroke="rgba(245,166,35,0.07)" stroke-width="1">
+            <animate attributeName="r" values="65;82;65" dur="4s" begin="0.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0;1" dur="4s" begin="0.5s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Rotating rays -->
+          <g transform="translate(190,70)">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="28s" repeatCount="indefinite" additive="sum"/>
+            <line x1="0" y1="-52" x2="0" y2="-70" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+            <line x1="37" y1="-37" x2="50" y2="-50" stroke="#FFE066" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <line x1="52" y1="0" x2="70" y2="0" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+            <line x1="37" y1="37" x2="50" y2="50" stroke="#FFE066" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <line x1="0" y1="52" x2="0" y2="70" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+            <line x1="-37" y1="37" x2="-50" y2="50" stroke="#FFE066" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <line x1="-52" y1="0" x2="-70" y2="0" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+            <line x1="-37" y1="-37" x2="-50" y2="-50" stroke="#FFE066" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+          </g>
+          <!-- Animated solar rays to panel -->
+          <line x1="168" y1="104" x2="138" y2="228" stroke="rgba(255,224,102,0.4)" stroke-width="1.5" stroke-dasharray="7 4">
+            <animate attributeName="opacity" values="0;0.9;0;0.9;0" dur="2.3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="0;-44" dur="0.95s" repeatCount="indefinite"/>
+          </line>
+          <line x1="188" y1="104" x2="180" y2="228" stroke="rgba(255,224,102,0.65)" stroke-width="2" stroke-dasharray="9 4">
+            <animate attributeName="opacity" values="0;1;0;1;0" dur="1.9s" begin="0.3s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="0;-52" dur="0.88s" repeatCount="indefinite"/>
+          </line>
+          <line x1="208" y1="104" x2="225" y2="228" stroke="rgba(255,224,102,0.4)" stroke-width="1.5" stroke-dasharray="7 4">
+            <animate attributeName="opacity" values="0;0.8;0;0.8;0" dur="2.6s" begin="0.6s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="0;-44" dur="1.05s" repeatCount="indefinite"/>
+          </line>
+          <line x1="152" y1="104" x2="104" y2="232" stroke="rgba(232,25,44,0.22)" stroke-width="1" stroke-dasharray="5 5">
+            <animate attributeName="opacity" values="0;0.55;0" dur="3s" begin="0.9s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="0;-52" dur="1.15s" repeatCount="indefinite"/>
+          </line>
+          <line x1="225" y1="104" x2="268" y2="232" stroke="rgba(232,25,44,0.22)" stroke-width="1" stroke-dasharray="5 5">
+            <animate attributeName="opacity" values="0;0.55;0" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-dashoffset" values="0;-52" dur="1.15s" repeatCount="indefinite"/>
+          </line>
+          <!-- Solar panel -->
+          <g transform="translate(190,295) rotate(-5)">
+            <rect x="-148" y="-76" width="296" height="152" rx="6" fill="rgba(0,0,0,0.3)" transform="translate(4,6)"/>
+            <rect x="-148" y="-76" width="296" height="152" rx="6" fill="url(#panGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <!-- Grid -->
+            <line x1="-74" y1="-72" x2="-74" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="0" y1="-72" x2="0" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="74" y1="-72" x2="74" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="-144" y1="-25" x2="144" y2="-25" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="-144" y1="25" x2="144" y2="25" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <!-- Sheen -->
+            <rect x="-148" y="-76" width="296" height="152" rx="6" fill="rgba(255,224,102,0)" opacity="0">
+              <animate attributeName="opacity" values="0;0.07;0;0" dur="3.8s" repeatCount="indefinite"/>
+            </rect>
+            <!-- Active border -->
+            <rect x="-148" y="-76" width="296" height="152" rx="6" fill="none" stroke="#F5A623" stroke-width="1" opacity="0" filter="url(#pGlow)">
+              <animate attributeName="opacity" values="0;0.7;0;0.7;0" dur="2.3s" begin="0.5s" repeatCount="indefinite"/>
+            </rect>
+          </g>
+          <!-- Stand -->
+          <line x1="162" y1="371" x2="148" y2="420" stroke="rgba(128,128,128,0.2)" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="218" y1="371" x2="232" y2="420" stroke="rgba(128,128,128,0.2)" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="133" y1="420" x2="247" y2="420" stroke="rgba(128,128,128,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Output badge -->
+          <g transform="translate(306,292)">
+            <rect x="-42" y="-22" width="84" height="44" rx="4" fill="rgba(245,166,35,0.08)" stroke="rgba(245,166,35,0.3)" stroke-width="1"/>
+            <text x="0" y="-5" text-anchor="middle" fill="#F5A623" font-family="Bebas Neue,sans-serif" font-size="11" letter-spacing="1">OUTPUT</text>
+            <text x="0" y="13" text-anchor="middle" fill="white" font-family="Bebas Neue,sans-serif" font-size="13" letter-spacing="1">4.5 kW</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-full reveal">
+    <h2>HAVE A PROJECT IN MIND?<br><span class="red">LET'S DISCUSS.</span></h2>
+    <p>Whether you're at planning stage or need support on an active tender, our trained engineers are ready to help.</p>
+    <div class="cta-btns">
+      <button class="btn-purple" onclick="showPage('contact')"> Book a Free Consultation</button>
+      <button class="btn-outline" onclick="showPage('services')">Explore Services →</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">RENE<span>LION</span></div>
+    <div class="footer-copy">© 2026 Renelion Energy Consulting. All rights reserved.</div>
+    <div class="footer-links">
+      <a onclick="showPage('about')">About</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<div id="page-about" class="page">
+  <section class="about-hero">
+    <svg style="position:absolute;right:0;top:0;height:100%;width:55%;opacity:0.04;pointer-events:none" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+      <circle cx="300" cy="150" r="90" fill="none" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="150" r="145" fill="none" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="300" cy="150" r="200" fill="none" stroke="currentColor" stroke-width="0.3"/>
+      <line x1="300" y1="60" x2="300" y2="10" stroke="currentColor" stroke-width="1"/>
+      <line x1="364" y1="86" x2="400" y2="55" stroke="currentColor" stroke-width="1"/>
+      <line x1="390" y1="150" x2="440" y2="150" stroke="currentColor" stroke-width="1"/>
+      <line x1="300" y1="240" x2="300" y2="295" stroke="currentColor" stroke-width="1"/>
+      <line x1="210" y1="150" x2="160" y2="150" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <div>
+      <div class="section-eyebrow">About Renelion</div>
+      <div class="about-title">
+        ENERGY<br><span class="red">EXPERTS</span><br><span class="outline">INDUSTRY TRAINED</span>
+      </div>
+    </div>
+  </section>
+  <div class="about-body-grid">
+    <div class="reveal">
+      <p class="about-para">Renelion is an energy engineering consultancy founded by <span class="red">IIT-trained experts</span> specialising in Battery Energy Storage Systems (BESS), Solar PV, and integrated hybrid energy systems.</p>
+      <p class="about-para">Our team brings together engineers from <strong>India's top IITs</strong> — combining deep academic foundations in power systems and energy with hands-on project experience across industrial, commercial, and utility-scale deployments.</p>
+      <p class="about-para">We believe that the best energy consulting is <strong>technically precise and commercially grounded</strong>. Our deliverables — whether sizing reports, tender documents, BEDPA studies, or financial models — are built to be submitted and used directly, not translated or reworked by your in-house team.</p>
+      <p class="about-para">Renelion covers <span class="red">three domains</span>: BESS, Solar PV, and Integrated BESS+Solar systems. This breadth — backed by a single, cohesive team — means you get consistent quality across every phase of your project.</p>
+      <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <button class="btn-purple" onclick="showPage('contact')">Work With Us →</button>
+        <button class="btn-outline" onclick="showPage('services')">Our Services →</button>
+      </div>
+    </div>
+    <div class="reveal-r d1">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Areas of Expertise</div>
+        <span class="chip">BESS Sizing</span><span class="chip">BEDPA</span><span class="chip">Solar PV Design</span>
+        <span class="chip">Energy Yield Analysis</span><span class="chip">Tender Docs</span><span class="chip">Financial Modelling</span>
+        <span class="chip">Grid Integration</span><span class="chip">Dispatch Strategy</span><span class="chip">Feasibility Studies</span>
+        <span class="chip">Co-Location Design</span><span class="chip">Regulatory Compliance</span><span class="chip">O&amp;M Advisory</span>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Our Team Expertise</div>
+        <div style="font-size:0.88rem;color:var(--gray);line-height:2.4">
+          <span style="color:var(--red)">◆</span>&nbsp; Power Systems<br>
+          <span style="color:var(--red)">◆</span>&nbsp; Energy Storage<br>
+          <span style="color:var(--red)">◆</span>&nbsp; Renewable Energy<br>
+          <span style="color:var(--red)">◆</span>&nbsp; Electrical Engineering<br>
+          <span style="color:var(--red)">◆</span>&nbsp; Power Electronics
+        </div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">The Renelion Way</div>
+        <div style="font-size:0.87rem;color:var(--gray);line-height:2.3">
+          <span style="color:var(--purple2)">✓</span>&nbsp; Submit-ready deliverables<br>
+          <span style="color:var(--purple2)">✓</span>&nbsp; End-to-end engagement<br>
+          <span style="color:var(--purple2)">✓</span>&nbsp; Fast, reliable turnaround<br>
+          <span style="color:var(--purple2)">✓</span>&nbsp; Transparent communication
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-full reveal">
+    <h2>READY TO WORK<br><span class="red">WITH RENELION?</span></h2>
+    <p>Let's talk about your project requirements and how our expert team can help.</p>
+    <div class="cta-btns"><button class="btn-purple" onclick="showPage('contact')">Book a Free Consultation</button></div>
+  </div>
+  <footer>
+    <div class="footer-logo">RENE<span>LION</span></div>
+    <div class="footer-copy">© 2026 Renelion Energy Consulting. All rights reserved.</div>
+    <div class="footer-links"><a onclick="showPage('home')">Home</a><a onclick="showPage('services')">Services</a><a onclick="showPage('contact')">Contact</a></div>
+  </footer>
+</div>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<div id="page-services" class="page">
+  <section class="spage-hero">
+    <div class="spage-bg-num">SVC</div>
+    <div class="section-eyebrow">Services</div>
+    <h1 class="section-title" style="opacity:0;animation:fadeUp 0.8s 0.4s forwards;font-size:clamp(2.8rem,6.5vw,5.8rem)">BESS, SOLAR PV &amp;<br><span style="color:var(--red)">INTEGRATED CONSULTING</span></h1>
+    <p class="section-sub">Full-lifecycle technical and commercial support — across all three energy domains — delivered by IIT-trained experts.</p>
+  </section>
+  <div class="svc-full-grid">
+    <div class="svc-full-card reveal">
+      <div class="sfc-left">
+        <div class="sfc-num">01</div><span class="sfc-icon">🔋</span>
+        <div class="sfc-title">BESS ENGINEERING</div>
+        <p class="sfc-desc">Complete battery energy storage consulting — from initial sizing to BEDPA, tender documentation, and financial modelling.</p>
+      </div>
+      <div class="sfc-right"><ul class="sfc-list">
+        <li><span class="sfc-list-n">01</span>BESS sizing — MW/MWh calculations, duration optimisation, technology selection</li>
+        <li><span class="sfc-list-n">02</span>BEDPA — Battery Energy Detailed Project Analysis (degradation, RTE, lifetime)</li>
+        <li><span class="sfc-list-n">03</span>Tender documentation — RFP/RFQ, technical specs, BoQ, bid evaluation</li>
+        <li><span class="sfc-list-n">04</span>Detailed calculations — load flow, fault studies, cable sizing, protection design</li>
+        <li><span class="sfc-list-n">05</span>Financial modelling — CAPEX/OPEX, revenue stacking, IRR/NPV, bankable reports</li>
+        <li><span class="sfc-list-n">06</span>Performance optimisation — dispatch strategy, SoC management, benchmarking</li>
+        <li><span class="sfc-list-n">07</span>Regulatory compliance — grid codes, CEIG/CEA, interconnection studies</li>
+      </ul></div>
+    </div>
+    <div class="svc-full-card reveal d1">
+      <div class="sfc-left">
+        <div class="sfc-num">02</div><span class="sfc-icon">☀️</span>
+        <div class="sfc-title">SOLAR PV ENGINEERING</div>
+        <p class="sfc-desc">Utility-scale and C&amp;I solar PV consulting — energy yield modelling, system design, detailed calculations, and full tender support.</p>
+      </div>
+      <div class="sfc-right"><ul class="sfc-list">
+        <li><span class="sfc-list-n">01</span>Energy yield analysis — PVsyst P50/P90 modelling, shadow and soiling analysis</li>
+        <li><span class="sfc-list-n">02</span>System sizing and design — DC/AC ratio, inverter selection, string configuration</li>
+        <li><span class="sfc-list-n">03</span>Tender documentation — technical specs, BoQ, vendor evaluation, bid documents</li>
+        <li><span class="sfc-list-n">04</span>Detailed calculations — earthing, cabling, protection, transformer sizing</li>
+        <li><span class="sfc-list-n">05</span>Financial modelling — LCOE, PPA structuring, tariff benchmarking, IRR analysis</li>
+        <li><span class="sfc-list-n">06</span>Grid integration — SLDC/RLDC, reactive power, scheduling and forecasting</li>
+        <li><span class="sfc-list-n">07</span>Regulatory approvals — CEIG/CEA inspection readiness, DISCOM documentation</li>
+      </ul></div>
+    </div>
+    <div class="svc-full-card reveal d2">
+      <div class="sfc-left">
+        <div class="sfc-num">03</div><span class="sfc-icon">⚡</span>
+        <div class="sfc-title">INTEGRATED BESS + SOLAR</div>
+        <p class="sfc-desc">Hybrid system design combining BESS and solar PV — co-location engineering, dispatch optimisation, and bankable financial modelling.</p>
+      </div>
+      <div class="sfc-right"><ul class="sfc-list">
+        <li><span class="sfc-list-n">01</span>Integrated sizing — joint optimisation of PV capacity and BESS duration</li>
+        <li><span class="sfc-list-n">02</span>Co-location design — shared infrastructure planning to minimise CAPEX</li>
+        <li><span class="sfc-list-n">03</span>Dispatch strategy — revenue-maximising algorithms for time-of-use, peak shaving</li>
+        <li><span class="sfc-list-n">04</span>Bankable feasibility reports — lender-grade technical and financial documentation</li>
+        <li><span class="sfc-list-n">05</span>Integrated tender packages — covering both PV and BESS scopes</li>
+        <li><span class="sfc-list-n">06</span>Financial modelling — hybrid revenue stack, green certificates, capacity payments</li>
+        <li><span class="sfc-list-n">07</span>Performance monitoring — SCADA/EMS advisory, KPI dashboards, actual vs model</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="cta-full reveal">
+    <h2>NOT SURE WHICH<br><span class="red">SERVICE FITS?</span></h2>
+    <p>Book a free 30-minute call and our trained engineers will help you figure it out.</p>
+    <div class="cta-btns"><button class="btn-purple" onclick="showPage('contact')"> Book a Free Consultation</button></div>
+  </div>
+  <footer>
+    <div class="footer-logo">RENE<span>LION</span></div>
+    <div class="footer-copy">© 2026 Renelion Energy Consulting. All rights reserved.</div>
+    <div class="footer-links"><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a></div>
+  </footer>
+</div>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<div id="page-contact" class="page">
+  <section class="contact-hero">
+    <div class="section-eyebrow">Contact</div>
+    <h1 class="section-title" style="opacity:0;animation:fadeUp 0.8s 0.4s forwards;font-size:clamp(2.8rem,6.5vw,5.8rem)">LET'S WORK<br><span style="color:var(--red)">TOGETHER</span></h1>
+    <p class="section-sub">Tell us about your project — our trained engineers will respond within 24 hours.</p>
+  </section>
+  <div class="contact-body">
+    <div class="reveal">
+      <div class="cm"><div class="cm-icon">✉</div><div><div class="cm-label">Email</div><div class="cm-val">connect@renelionsolutions.com</div></div></div>
+      <div class="cm"><div class="cm-icon">💬</div><div><div class="cm-label">WhatsApp</div><div class="cm-val">+91 9834683517</div></div></div>
+      <div class="cm"><div class="cm-icon">📍</div><div><div class="cm-label">Based In</div><div class="cm-val">India — Available Globally</div></div></div>
+      <div class="response-note"><div class="response-dot"></div><span>Response within <strong>24 hours</strong> guaranteed</span></div>
+      <div style="margin-top:2.5rem">
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.2rem">We Work With</div>
+        <div style="display:flex;flex-direction:column;gap:0.8rem">
+          <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.87rem;color:var(--gray)"><span style="color:var(--red);font-size:0.7rem">◆</span> Solar developers &amp; IPPs</div>
+          <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.87rem;color:var(--gray)"><span style="color:var(--red);font-size:0.7rem">◆</span> EPC contractors &amp; engineering firms</div>
+          <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.87rem;color:var(--gray)"><span style="color:var(--red);font-size:0.7rem">◆</span> Energy startups &amp; consultancies</div>
+          <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.87rem;color:var(--gray)"><span style="color:var(--red);font-size:0.7rem">◆</span> Project developers &amp; financiers</div>
+          <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.87rem;color:var(--gray)"><span style="color:var(--red);font-size:0.7rem">◆</span> DISCOMs &amp; PSUs</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-r d1">
+      <div class="contact-form">
+        <div id="formContent">
+          <div class="form-title">Send a Message</div>
+          <div class="form-sub">Fill in the details below — we'll reach out to discuss your project within 24 hours.</div>
+          <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="e.g. Rohan Sharma"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="femail" placeholder="you@company.com"></div>
+          <div class="form-group"><label>Company / Organisation</label><input type="text" id="fcompany" placeholder="Optional"></div>
+          <div class="form-group"><label>Domain of Interest</label>
+            <select id="fdomain">
+              <option value="" disabled selected>Select a domain...</option>
+              <option>BESS Engineering &amp; Consulting</option>
+              <option>Solar PV Engineering &amp; Consulting</option>
+              <option>Integrated BESS + Solar PV</option>
+              <option>Not Sure — Need Guidance</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Specific Service Required</label>
+            <select id="fservice">
+              <option value="" disabled selected>Select a service...</option>
+              <option>BESS Sizing &amp; Design</option>
+              <option>BEDPA</option>
+              <option>Tender Documentation</option>
+              <option>Detailed Calculations</option>
+              <option>Financial Modelling</option>
+              <option>Energy Yield Analysis (Solar PV)</option>
+              <option>Grid Integration Study</option>
+              <option>Integrated BESS+Solar Consulting</option>
+              <option>Other / Full Project Support</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Project Details</label><textarea id="fmsg" rows="4" placeholder="Describe your project, stage, approximate scale, and what support you need..."></textarea></div>
+          <button class="form-submit" onclick="submitForm()">Send Message →</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div style="font-size:3.5rem;margin-bottom:1.2rem">✅</div>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--purple2);letter-spacing:0.05em;margin-bottom:0.6rem">Message Sent!</h3>
+          <p style="color:var(--gray);font-size:0.92rem;line-height:1.75;max-width:300px;margin:0 auto 1.5rem">Thanks for reaching out. Our IIT-trained team will get back to you within <strong style="color:var(--white)">24 hours</strong> to discuss your project.</p>
+          <p style="font-size:0.8rem;color:var(--gray2)">You'll also receive a confirmation at your email address.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">RENE<span>LION</span></div>
+    <div class="footer-copy">© 2026 Renelion Energy Consulting. All rights reserved.</div>
+    <div class="footer-links"><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About</a><a onclick="showPage('services')">Services</a></div>
+  </footer>
+</div>
+
+<script>
+// ── Cursor ──
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function anim(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+document.querySelectorAll('button,a,input,textarea,select,.sb,.dc,.svc-full-card,.why-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.transform='translate(-50%,-50%) scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
+});
+
+// ── Theme toggle ──
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('themeLabel').textContent=isDark?'Light':'Dark';
+}
+
+// ── Nav ──
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+window.addEventListener('scroll',()=>{
+  forceRevealViewport();
+  document.getElementById('navbar').style.background=window.scrollY>40?'var(--nav-bg)':'var(--nav-bg)';
+});
+
+// ── Page nav ──
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('navLinks').classList.remove('open');
+  setTimeout(()=>{ initReveal(); forceRevealViewport(); }, 80);
+  setTimeout(forceRevealViewport, 400);
+}
+
+// ── Scroll reveal ──
+function initReveal(){
+  const selectors = [
+    '.page.active .reveal',
+    '.page.active .reveal-l', 
+    '.page.active .reveal-r',
+    '.page.active .sb',
+    '.page.active .dc',
+    '.page.active .svc-full-card'
+  ];
+  const els = document.querySelectorAll(selectors.join(','));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => { el.classList.remove('visible'); io.observe(el); });
+}
+
+// ── Form ──
+function submitForm() {
+  const name    = document.getElementById('fname').value.trim();
+  const email   = document.getElementById('femail').value.trim();
+  const msg     = document.getElementById('fmsg').value.trim();
+  const company = document.getElementById('fcompany')?.value.trim() || 'Not provided';
+  const domain  = document.getElementById('fdomain')?.value || 'Not selected';
+  const service = document.getElementById('fservice')?.value || 'Not selected';
+
+  if (!name || !email || !msg) {
+    alert('Please fill in your name, email, and project details.');
+    return;
+  }
+
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  const templateParams = {
+    from_name:    name,
+    from_email:   email,
+    company:      company,
+    domain:       domain,
+    service:      service,
+    message:      msg,
+    reply_to:     email,
+    to_name:      'Renelion Team',
+  };
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(() => {
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    })
+    .catch((err) => {
+      console.error('EmailJS error:', err);
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      alert('Something went wrong. Please email us directly at connect@renelionsolutions.com');
+    });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  // Force-show all in-viewport elements after short delay
+  setTimeout(forceRevealViewport, 150);
+  setTimeout(forceRevealViewport, 600);
+});
+
+function forceRevealViewport() {
+  document.querySelectorAll('.page.active .sb, .page.active .dc, .page.active .reveal, .page.active .reveal-l, .page.active .reveal-r, .page.active .svc-full-card').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 100) el.classList.add('visible');
+  });
+}
+</script>
+</body>
+</html>
